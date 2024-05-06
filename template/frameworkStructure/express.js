@@ -8,12 +8,14 @@ AutoLoad.loadConfig();
 AutoLoad.loadModules();
 
 const { Executor, sockets } = require("@njs2/base");
-sockets.init();
 
 /* External Package imports */
 const app = express();
 const upload = multer();
 const server = http.createServer(app);
+
+// Version 2.5.0 with Socket.io Server starting from the same port
+sockets.init(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
